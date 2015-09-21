@@ -41,7 +41,7 @@ GetActivityFactors<-function()
   # gee, we could probably find a better way to do this.....
   #  alData<-data.frame(alRaw)
   
-  #alData
+  #alData 
   # c(alData)
 }
 
