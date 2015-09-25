@@ -1,14 +1,11 @@
+library(dplyr)
 
-# convenience function.
-dataDir<-function() { "UCI HAR Dataset" }
-
-
-
+DataDir<-"UCI HAR Dataset" 
 
 # Loads the feature labels from disk 
 loadFeatures<-function()
 {
-  path<-paste(dataDir(),"/features.txt", sep="")
+  path<-paste(DataDir,"/features.txt", sep="")
   res<-read.table(path)
   as.vector(res[,2])
 }
@@ -16,19 +13,30 @@ loadFeatures<-function()
 # loads a dataset that we will merge later.
 loadDataSet<-function(dataPath, activityPath)
 {
-
+  cNames<-GetMeasurementNames()
+  data<-read.table(dataPath, col.names = cNames)
+  act<-read.table(activityPath)
+  
+  data
 }
 
 
 # merge one or more datasets into a single data set.
-mergeDatasets<-function(dataSets)
+# mergeDatasets<-function(dataSets)
+# {
+# }
+
+# Get all of the measurement names.
+GetMeasurementNames<-function()
 {
+  mPath<-paste(DataDir,"/features.txt",sep="")
+  mData<-read.table(mPath)
+  mData[[2]]  # Just the names folks!
 }
 
-
+# Get all of the activity names.
 GetActivityFactors<-function()
 {
-  dataDir<-DataDir()
   
   # activity labels, as a factor
   alPath<-paste(DataDir,"/activity_labels.txt", sep="")
@@ -48,6 +56,12 @@ GetActivityFactors<-function()
 
 # now run the analysis...
 
-testData<- paste(dataDir(), "/test/X_test.txt", sep="")
-testActivity<-paste(dataDir(), "/test/y_test.txt", sep="")
-loadDataSet(testPath, testActivity)
+testData<- paste(DataDir, "/test/X_test.txt", sep="")
+testActivity<-paste(DataDir, "/test/y_test.txt", sep="")
+testSet<-loadDataSet(testData, testActivity)
+
+trainData<- paste(DataDir, "/train/X_train.txt", sep="")
+trainActivity<-paste(DataDir, "/train/y_train.txt", sep="")
+trainSet<-loadDataSet(trainData, trainActivity)
+
+rt<-read.table(testData)
