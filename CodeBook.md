@@ -29,5 +29,5 @@ The names of the data columns, with exception of Activity and Subject use a simp
 The name of the measurement is followed by either mean() or std() and then by the axis of the measurement.
 
 For example:
-'tBodyAcc-mean()-Y' describes the mean value of the tBodyAcc measurement on the y-axis.
+'tBodyAcc-mean()-Y' describes the mean value of the tBodyAcc measurement on the y-axis.  
 'fBodyAcc-std()-X' describes the standard deviation of the fBodyAcc measurement on the x-axis.
