@@ -1,19 +1,19 @@
-Course Project Codebook
+#Course Project Codebook
 
 
-Variable Names:
+##Variable Names:
 Variable names, with exception of Activity and Subject use a simple naming convention.
 The name of the measurement is followed by either mean() or std() and then by the axis of the measurement.
 
 For example:
-tBodyAcc-mean()-Y describes the mean value of the tBodyAcc on the y-axis.
+'tBodyAcc-mean()-Y' describes the mean value of the tBodyAcc measurement on the y-axis.
+'fBodyAcc-std()-X' describes the standard deviation of the fBodyAcc measurement on the x-axis.
 
 
-
-Script Process + transformation.
+##Script Process + data transformations.
 The script performs the following actions:
 
-1. Clears the workspace.
+1. Clears the workspace, loads libraries, and sets global variables.
 2. Each set of test and training data is loaded in the loadDataSet() function.  This function does most of the
    transformation work by reading the raw data, naming the columns, extracting only the mean and standard deviation
    information, and finally appends the corresponding activity and subject information to this subset.
