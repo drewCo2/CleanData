@@ -9,7 +9,19 @@ library(dplyr)
 
 # Data directory relative to your working directory.  Make sure to use setwd() to set
 # an appropriate working directory.
-DataDir<-"UCI HAR Dataset" 
+DataDir<-"./UCI HAR Dataset" 
+DataZip<-"./DataSet.zip"
+
+
+# download the data set and extract it if it isn't available.
+if(!file.exists(DataZip)){
+  fileUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+  download.file(fileUrl,destfile = DataZip)
+  unzip(zipfile = DataZip)
+}
+
+
+
 
 # Get all of the measurement names.
 GetMeasurementNames<-function()
@@ -84,4 +96,5 @@ merged<-rbind(testSet, trainSet)
 tidy<-aggregate(. ~Subject + Activity, merged, mean)
 
 # Write outout for inspection.
+write.table(tidy, "TidyData.txt", row.names = FALSE)
 write.csv(tidy, "TidySet.csv")
