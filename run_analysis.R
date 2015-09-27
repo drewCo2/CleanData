@@ -71,7 +71,10 @@ loadDataSet<-function(dataPath, activityPath, subjectPath)
 }
 
 
-# Load the test data.  
+# Load the test data.
+# The script will create a set of path variables that it will use to load the correct data for
+# each of the data sets. Each data set requires information for the source data, and its associated
+# activity an subject information.
 # 'loadDataSet' function extracts mean/std information + sets subject/activity data.
 testData<- paste(DataDir, "/test/X_test.txt", sep="")
 testActivity<-paste(DataDir, "/test/y_test.txt", sep="")
