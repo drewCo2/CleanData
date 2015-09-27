@@ -1,3 +1,8 @@
+# Andrew A. Ritz
+# Getting + Cleaning data course project.
+
+
+
 # clean the workspace + load libs.
 rm(list=ls())
 library(dplyr)
@@ -5,15 +10,6 @@ library(dplyr)
 # Data directory relative to your working directory.  Make sure to use setwd() to set
 # an appropriate working directory.
 DataDir<-"UCI HAR Dataset" 
-
-# Loads the feature labels from disk 
-loadFeatures<-function()
-{
-  path<-paste(DataDir,"/features.txt", sep="")
-  res<-read.table(path)
-  as.vector(res[,2])
-}
-
 
 # Get all of the measurement names.
 GetMeasurementNames<-function()
@@ -33,18 +29,23 @@ GetActivityData<-function()
   al
 }
 
-# loads a dataset that we will merge later.
+# loads a dataset that we will use for merging later.
+# This function combines steps 2-4 per set.
 loadDataSet<-function(dataPath, activityPath, subjectPath)
 {
     
   cNames<-GetMeasurementNames()
-  data<-read.table(dataPath)
-  names(data)<-cNames
-  
-  # Extract only the standar deviation and mean information.
-  pat<-"-mean()|-std()"
-  data<-select(data,matches(pat))
+  td<-read.table(dataPath)
 
+    
+  # Extract only the standar deviation and mean information.
+  # data<-select(data,matches(pat))
+
+  names(td)<-cNames
+
+  pat<-"-mean\\(\\)|-std\\(\\)"
+  cFilter<-grep(pat,cNames)
+  data<-td[,cFilter]  
   
   # Append subject and activity information to the data set. 
   al<-GetActivityData()
@@ -56,7 +57,6 @@ loadDataSet<-function(dataPath, activityPath, subjectPath)
   
   data
 }
-
 
 
 # Load the test data.  
