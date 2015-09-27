@@ -1,0 +1,26 @@
+Course Project Codebook
+
+
+Variable Names:
+Variable names, with exception of Activity and Subject use a simple naming convention.
+The name of the measurement is followed by either mean() or std() and then by the axis of the measurement.
+
+For example:
+tBodyAcc-mean()-Y describes the mean value of the tBodyAcc on the y-axis.
+
+
+
+Script Process + transformation.
+The script performs the following actions:
+
+1. Clears the workspace.
+2. Each set of test and training data is loaded in the loadDataSet() function.  This function does most of the
+   transformation work by reading the raw data, naming the columns, extracting only the mean and standard deviation
+   information, and finally appends the corresponding activity and subject information to this subset.
+   
+3. Once the test and training data sets are loaded (in step #2, above), they are combined into a single, final data
+   set that can be used for further analysis.
+
+4. The script then uses the merged data from step #3 to create a tidy data set that summarizes the mean of each
+   measurement, cross referenced by the activity and subject.  The data is output to a text file, and a csv file
+   that can be loaded into a spreadsheet program for convenient reading.
